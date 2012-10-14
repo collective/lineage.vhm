@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="lineage.vhm">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <i18n:registerTranslations directory="locales" />
+  
+  <includePlugins package="." />
+  <includeDependencies package="." />
+  
+  <genericsetup:registerProfile
+      name="default"
+      title="lineage.vhm"
+      directory="profiles/default"
+      description="Installs the lineage.vhm package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <!-- -*- extra stuff goes here -*- -->
+  
+  <!-- Control panel -->
+  <browser:page
+      name="lineage-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.LineageSettingsControlPanel"
+      permission="cmf.ManagePortal"
+      />
+
+</configure>
